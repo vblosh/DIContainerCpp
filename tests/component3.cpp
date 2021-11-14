@@ -13,11 +13,11 @@ unsigned int Component3::AddRef()
 
 unsigned int Component3::Release()
 {
-	--m_Count;
+	auto ret = --m_Count;
 	if (m_Count == 0) {
 		delete this;
 	}
-	return m_Count;
+	return ret;
 }
 
 IUnknown* Component3::QueryInterface(UID id)

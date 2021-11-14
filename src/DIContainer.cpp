@@ -24,11 +24,11 @@ std::ostream& operator << (std::ostream& os, std::unordered_set<UID>& container)
 std::ostream& operator << (std::ostream& os, DIContainer& cont)
 {
 	os << "Registered ids with SharedInstance policy:\n";
-	for (auto item : cont.m_SharedInstances) {
+	for (auto& item : cont.m_SharedInstances) {
 		os << item.first << " instance at " << (void*)(item.second.Instance) << std::endl;
 	}
 	os << "Registered ids with NewInstance policy:\n";
-	for (auto item : cont.m_NewInstances) {
+	for (auto& item : cont.m_NewInstances) {
 		os << item.first << std::endl;
 	}
 	return os;

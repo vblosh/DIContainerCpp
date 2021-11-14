@@ -13,12 +13,12 @@ int Component1::Calculate(int x)
 
  unsigned int Component1::Release()
 {
-	--m_Count;
-	if(m_Count == 0) { 
-		delete this;
-	}
-	return m_Count;
-}
+	 auto ret = --m_Count;
+	 if (m_Count == 0) {
+		 delete this;
+	 }
+	 return ret;
+ }
 
 IUnknown* Component1::QueryInterface(UID id)
 {
