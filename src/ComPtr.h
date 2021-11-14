@@ -6,7 +6,9 @@ class ComPtr
 {
 public:
 	ComPtr() : ptr(nullptr) {}
+	
 	explicit ComPtr(IUnknown* p) : ptr(reinterpret_cast<_T*>(p)) {}
+	
 	ComPtr(_T* p) : ptr(p) {}
 
 	ComPtr(const ComPtr<_T, _id>& other)
@@ -36,7 +38,6 @@ public:
 	{
 		ptr = reinterpret_cast<_T*>(static_cast<IUnknown*>(other.ptr)->QueryInterface(_id));
 		return *this;
-
 	}
 
 	ComPtr& operator=(_T* p)
@@ -58,6 +59,16 @@ public:
 	}
 
 	_T* operator->()
+	{
+		return ptr;
+	}
+
+	explicit operator bool() const
+	{
+		return ptr != nullptr;
+	}
+
+	_T* get() const
 	{
 		return ptr;
 	}
