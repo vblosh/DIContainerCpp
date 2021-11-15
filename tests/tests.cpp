@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-#include "../src/DIcontainer.h"
+#include "../src/DIContainer.h"
 #include "component1.h"
 #include "component2.h"
 #include "component3.h"

@@ -22,7 +22,10 @@ public:
 		this->operator=(other);
 	}
 
-	ComPtr(ComPtr<_T, _id>&& other) : ptr(other.ptr) {}
+	ComPtr(ComPtr<_T, _id>&& other) : ptr(other.ptr)
+	{
+		other.ptr = nullptr;
+	}
 
 	ComPtr& operator=(const ComPtr<_T, _id>& other)
 	{

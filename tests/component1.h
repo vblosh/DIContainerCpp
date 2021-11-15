@@ -25,6 +25,7 @@ public:
 	// Inherited via IComponent1
 	virtual int Calculate(int x) override;
 
+	unsigned int GetCount() { return m_Count; }
 private:
 	std::vector<UID> dependencies {};
 	unsigned int m_Count = 0;

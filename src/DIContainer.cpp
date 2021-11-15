@@ -1,4 +1,4 @@
-#include "DIcontainer.h"
+#include "DIContainer.h"
 #include <sstream>   
 
 // Utility functions
