@@ -14,3 +14,14 @@ bld/
 
 .vs/
 /build/
+CMakeFiles
+*.vcxproj
+*.filters
+*.user
+/.cproject
+/.project
+/CMakeCache.txt
+/DIContainerCpp.sln
+/CodeCoverage.cov
+*.cmake
+*.sln

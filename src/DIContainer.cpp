@@ -98,7 +98,6 @@ IUnknown* DIContainer::Resolve(UID id, CreateInstanceFunc createFunction)
 
 	// set component dependencies
 	IComponent* component = createFunction();
-	component->AddRef();
 
 	std::vector<UID>& depIds = component->GetDependencies();
 	for (auto id : depIds) {

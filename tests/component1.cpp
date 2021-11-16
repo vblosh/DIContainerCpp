@@ -23,12 +23,15 @@ int Component1::Calculate(int x)
 IUnknown* Component1::QueryInterface(UID id)
 {
 	if (id == UIDIUnknown) {
+		AddRef();
 		return static_cast<IUnknown*>(static_cast<IComponent*>(this));
 	}
 	else if (id == UIDIComponent) {
+		AddRef();
 		return static_cast<IComponent*>(this);
 	}
 	else if (id == UIDComponent1) {
+		AddRef();
 		return (IUnknown*)static_cast<IComponent1*>(this);
 	}
 

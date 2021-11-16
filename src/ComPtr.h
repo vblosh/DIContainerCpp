@@ -39,7 +39,7 @@ public:
 	template<class _U, UID _uid>
 	ComPtr& operator=(const ComPtr<_U, _uid>& other)
 	{
-		ptr = reinterpret_cast<_T*>(static_cast<IUnknown*>(other.ptr)->QueryInterface(_id));
+		ptr = reinterpret_cast<_T*>(static_cast<IUnknown*>(other.get())->QueryInterface(_id));
 		return *this;
 	}
 

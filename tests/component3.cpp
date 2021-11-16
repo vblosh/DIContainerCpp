@@ -23,12 +23,15 @@ unsigned int Component3::Release()
 IUnknown* Component3::QueryInterface(UID id)
 {
 	if (id == UIDIUnknown) {
+		AddRef();
 		return static_cast<IUnknown*>(static_cast<IComponent*>(this));
 	}
 	else if (id == UIDIComponent) {
+		AddRef();
 		return static_cast<IComponent*>(this);
 	}
 	else if (id == UIDComponent3) {
+		AddRef();
 		return (IUnknown*)static_cast<IComponent3*>(this);
 	}
 
