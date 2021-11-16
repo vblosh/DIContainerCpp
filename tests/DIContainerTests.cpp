@@ -3,6 +3,8 @@
 #include <string>
 
 #include "../src/DIContainer.h"
+#include "../src/ComPtr.h"
+
 #include "component1.h"
 #include "component2.h"
 #include "component3.h"
@@ -12,7 +14,39 @@ IComponent* CreateCmp1() {
     return new Component1;
 }
 
-TEST(DIContainer, TEST1) {
+TEST(DIContainer, ComPtr) {
+    DIContainer cont;
+    // Register components in the container
+    cont.RegisterInterface(UIDComponent1, CreateCmp1, CreationPolicy::SharedInstance);
+    cont.RegisterInterface(UIDComponent2, []()->IComponent* { return new Component2; });
+
+    int val = 12;
+    ComPtr<IComponent1, UIDComponent1> cmp1(cont.GetInterface(UIDComponent1));
+    int res1 = cmp1->Calculate(val);
+    EXPECT_EQ(res1, val * val);
+
+    ComPtr<IComponent2, UIDComponent2> cmp2 = (IComponent2*)cont.GetInterface(UIDComponent2);
+    int res2 = cmp2->Calculate(val);
+    EXPECT_EQ(res2, val * val * 2);
+}
+
+TEST(DIContainer, ComPtrUsage) {
+    DIContainer cont;
+    cont.RegisterInterface(UIDComponent1, CreateCmp1, CreationPolicy::SharedInstance);
+    cont.RegisterInterface(UIDComponent2, []()->IComponent* { return new Component2; });
+
+    int val = 12;
+    IComponent1* cmp1 = (IComponent1*)cont.GetInterface(UIDComponent1);
+    int res1 = cmp1->Calculate(val);
+    EXPECT_EQ(res1, val * val);
+
+    IComponent2* cmp2 = (IComponent2*)cont.GetInterface(UIDComponent2);
+    int res2 = cmp2->Calculate(val);
+    EXPECT_EQ(res2, val * val * 2);
+}
+
+
+TEST(DIContainer, AddRefRelease) {
     DIContainer cont;
     cont.RegisterInterface(UIDComponent1, CreateCmp1, CreationPolicy::SharedInstance);
     cont.RegisterInterface(UIDComponent2, []()->IComponent* { return new Component2; });

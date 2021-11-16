@@ -12,6 +12,7 @@ enum class CreationPolicy
 	SharedInstance
 };
 
+// E.g. []()->IComponent* { return new MyFancyCustomComponent(); }
 typedef IComponent* (*CreateInstanceFunc)(void);
 
 class DIContainerExeption : public std::runtime_error
@@ -27,9 +28,11 @@ class DIContainer : public IContainer
 public:
 	DIContainer();
 	~DIContainer();
-
-	// IContainer implementation
+	
+	// Register a component with the unique `id` to be lazily created using a `createFn` and a creation `policy`
 	void RegisterInterface(UID id, CreateInstanceFunc createFn, CreationPolicy policy=CreationPolicy::NewInstance);
+	
+	// IContainer implementation
 	virtual IUnknown* GetInterface(UID id) override;
 
 private:
