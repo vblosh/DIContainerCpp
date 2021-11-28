@@ -1,5 +1,7 @@
 #pragma once
 
+using namespace dicontainercpp;
+
 const UID UIDComponent3 = 103;
 
 struct  IComponent3 : IUnknown

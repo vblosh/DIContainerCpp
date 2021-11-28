@@ -1,6 +1,8 @@
 #include "DIContainer.h"
 #include <sstream>   
 
+namespace dicontainercpp {
+
 // Utility functions
 template<class _Val>
 void CheckIfAlreadyRegistered(std::unordered_map<UID, _Val>& map, UID id)
@@ -106,4 +108,6 @@ IUnknown* DIContainer::Resolve(UID id, CreateInstanceFunc createFunction)
 	}
 
 	return component->QueryInterface(id);
+}
+
 }

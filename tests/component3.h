@@ -3,6 +3,8 @@
 #include "../src/ComPtr.h"
 #include "CyclicInterface.h"
 
+using namespace dicontainercpp;
+
 class Component3 : public IComponent, public IComponent3
 {
 public:

@@ -6,6 +6,8 @@
 #include "IComponent.h"
 #include "IContainer.h"
 
+namespace dicontainercpp {
+
 enum class CreationPolicy
 {
 	NewInstance,
@@ -53,3 +55,5 @@ private:
 };
 
 std::ostream& operator << (std::ostream& os, DIContainer& cont);
+
+}

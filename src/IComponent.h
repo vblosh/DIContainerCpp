@@ -2,6 +2,8 @@
 #include <vector>
 #include "IUnknown.h"
 
+namespace dicontainercpp {
+
 const UID UIDIComponent = 1;
 
 struct IComponent : IUnknown
@@ -12,3 +14,5 @@ struct IComponent : IUnknown
 	// `id` will have been returned by `GetDependencies()`
 	virtual void SetDependency(UID id, IUnknown* dependency) = 0;
 };
+
+}

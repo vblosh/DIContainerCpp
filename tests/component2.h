@@ -3,6 +3,8 @@
 #include "../src/ComPtr.h"
 #include "component1.h"
 
+using namespace dicontainercpp;
+
 const UID UIDComponent2 = 102;
 
 struct  IComponent2 : IUnknown

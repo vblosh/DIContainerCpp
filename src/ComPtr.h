@@ -1,6 +1,8 @@
 #pragma once
 #include "IUnknown.h"
 
+namespace dicontainercpp {
+
 template<class _T, UID _id>
 class ComPtr
 {
@@ -79,3 +81,5 @@ public:
 private:
 	_T* ptr;
 };
+
+}

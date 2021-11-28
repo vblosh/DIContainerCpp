@@ -1,6 +1,8 @@
 #pragma once
 #include "../src/IComponent.h"
 
+using namespace dicontainercpp;
+
 const UID UIDTestComp = 201;
 struct  ITestComp : public IUnknown
 {
