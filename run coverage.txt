@@ -1,1 +1,0 @@
-c:\Utils\CoverageCpp\Coverage-x64.exe -o C:\Users\v.bloshchanevich\Source\Repos\DIContainerCpp\CodeCoverageTest.cov -p C:\Users\v.bloshchanevich\Source\Repos\DIContainerCpp\src -- C:\Users\v.bloshchanevich\Source\Repos\DIContainerCpp\tests\Debug\runUnitTests.exe

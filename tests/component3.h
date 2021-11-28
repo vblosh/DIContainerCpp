@@ -1,11 +1,11 @@
 #pragma once
-#include "../src/IComponent.h"
+#include "../src/ComponentBase.h"
 #include "../src/ComPtr.h"
 #include "CyclicInterface.h"
 
 using namespace dicontainercpp;
 
-class Component3 : public IComponent, public IComponent3
+class Component3 : public ComponentBase, public IComponent3
 {
 public:
 	// IUnknown implementation
@@ -22,9 +22,9 @@ public:
 
 	// Inherited via IComponent3
 	virtual int Calculate(int x) override;
+
 private:
 	std::vector<UID> dependencies { UIDComponent4 };
-	unsigned int m_Count = 0;
 
 	ComPtr<IComponent4, UIDComponent4> m_Cmp1;
 };

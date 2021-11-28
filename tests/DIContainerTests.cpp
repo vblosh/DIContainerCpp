@@ -45,7 +45,6 @@ TEST(DIContainer, ComPtrUsage) {
     EXPECT_EQ(res2, val * val * 2);
 }
 
-
 TEST(DIContainer, AddRefRelease) {
     DIContainer cont;
     cont.RegisterInterface(UIDComponent1, CreateCmp1, CreationPolicy::SharedInstance);
@@ -60,7 +59,7 @@ TEST(DIContainer, AddRefRelease) {
     int res2 = cmp2->Calculate(val);
     EXPECT_EQ(res2, val * val * 2);
 
-    std::cout << cont;
+    //std::cout << cont;
 
     EXPECT_EQ(0, cmp2->Release());
     EXPECT_EQ(1, cmp1->Release()); // Shared instance, a reference stil exists
