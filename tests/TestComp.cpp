@@ -39,11 +39,11 @@ IUnknown* TestComp::QueryInterface(UID id)
 	}
 	else if (id == UIDTestComp) {
 		AddRef();
-		return (IUnknown*)static_cast<ITestComp*>(this);
+		return static_cast<ITestComp*>(this);
 	}
 	else if (id == UIDTestComp1) {
 		AddRef();
-		return (IUnknown*)static_cast<ITestComp1*>(this);
+		return static_cast<ITestComp1*>(this);
 	}
 
 	throw std::runtime_error("Unknown interface id!");

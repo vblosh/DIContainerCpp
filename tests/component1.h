@@ -1,5 +1,5 @@
 #pragma once
-#include "../src/IComponent.h"
+#include "../src/ComponentBase.h"
 
 using namespace dicontainercpp;
 
@@ -9,7 +9,7 @@ struct  IComponent1 : public IUnknown
 	virtual int Calculate(int x) = 0;
 };
 
-class Component1 : public IComponent, public IComponent1
+class Component1 : public ComponentBase, public IComponent1
 {
 public:
 	// IUnknown implementation
@@ -27,8 +27,6 @@ public:
 	// Inherited via IComponent1
 	virtual int Calculate(int x) override;
 
-	unsigned int GetCount() { return m_Count; }
 private:
 	std::vector<UID> dependencies {};
-	unsigned int m_Count = 0;
 };

@@ -1,4 +1,3 @@
-#include <stdexcept>
 #include "component3.h"
 
 int Component3::Calculate(int x)
@@ -8,34 +7,23 @@ int Component3::Calculate(int x)
 
 unsigned int Component3::AddRef()
 {
-	return ++m_Count;
+	return ComponentBase::AddRef();
 }
 
 unsigned int Component3::Release()
 {
-	auto ret = --m_Count;
-	if (m_Count == 0) {
-		delete this;
-	}
-	return ret;
+	return ComponentBase::Release();
 }
 
 IUnknown* Component3::QueryInterface(UID id)
 {
-	if (id == UIDIUnknown) {
+
+	if (id == UIDComponent3) {
 		AddRef();
-		return static_cast<IUnknown*>(static_cast<IComponent*>(this));
-	}
-	else if (id == UIDIComponent) {
-		AddRef();
-		return static_cast<IComponent*>(this);
-	}
-	else if (id == UIDComponent3) {
-		AddRef();
-		return (IUnknown*)static_cast<IComponent3*>(this);
+		return static_cast<IComponent3*>(this);
 	}
 
-	throw std::runtime_error("Unknown interface id!");
+	return ComponentBase::QueryInterface(id);
 }
 
 std::vector<UID>& Component3::GetDependencies()
@@ -45,7 +33,5 @@ std::vector<UID>& Component3::GetDependencies()
 
 void Component3::SetDependency(UID id, IUnknown* dependency)
 {
-	if (id == UIDComponent4) {
-		m_Cmp1 = reinterpret_cast<IComponent4*>(dependency);
-	}
+	AssignComPtr(m_Cmp1, id, dependency);
 }

@@ -1,4 +1,3 @@
-#include <stdexcept>
 #include "component2.h"
 
 int Component2::Calculate(int x)
@@ -6,46 +5,32 @@ int Component2::Calculate(int x)
 	return m_Cmp1->Calculate(x) * 2;
 }
 
- unsigned int Component2::AddRef()
+unsigned int Component2::AddRef()
 {
-	return ++m_Count;
+	return ComponentBase::AddRef();
 }
 
- unsigned int Component2::Release()
+unsigned int Component2::Release()
 {
-	auto ret = --m_Count;
-	if (m_Count == 0) {
-		delete this;
-	}
-	return ret;
+	return ComponentBase::Release();
 }
 
 IUnknown* Component2::QueryInterface(UID id)
 {
-	if (id == UIDIUnknown) {
+	if (id == UIDComponent2) {
 		AddRef();
-		return static_cast<IUnknown*>(static_cast<IComponent*>(this));
-	}
-	else if (id == UIDIComponent) {
-		AddRef();
-		return static_cast<IComponent*>(this);
-	}
-	else if (id == UIDComponent2) {
-		AddRef();
-		return (IUnknown*)static_cast<IComponent2*>(this);
+		return static_cast<IComponent2*>(this);
 	}
 
-	throw std::runtime_error("Unknown interface id!");
+	return ComponentBase::QueryInterface(id);
 }
 
 std::vector<UID>& Component2::GetDependencies()
 {
-	return dependencies;
+	return m_Dependencies;
 }
 
 void Component2::SetDependency(UID id, IUnknown* dependency)
 {
-	if (id == UIDComponent1) {
-		m_Cmp1 = reinterpret_cast<IComponent1*>(dependency);
-	}
+	AssignComPtr(m_Cmp1, id, dependency);
 }
