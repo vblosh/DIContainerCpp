@@ -18,6 +18,8 @@ struct  ITestComp1 : public IUnknown
 class TestComp : public IComponent, public ITestComp, public ITestComp1
 {
 public:
+	virtual ~TestComp() {}
+
 	// IUnknown implementation
 	virtual  unsigned int AddRef() override;
 
